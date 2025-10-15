@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import com.wolf.budgetapp.model.BudgetID;
 
+
 @Entity
 @Table(name = "BUDGET")
 public class Budget {
