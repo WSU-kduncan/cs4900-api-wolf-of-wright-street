@@ -8,7 +8,7 @@ import com.wolf.budgetapp.model.BudgetID;
 @Entity
 @Table(name = "BUDGET")
 public class Budget {
-
+    // make composite key a class
     @EmbeddedId
     private BudgetID id;
 
