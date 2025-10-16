@@ -23,7 +23,7 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "transaction_id", nullable = false)
-    Integer transactionId;
+    Long transactionId;
 
     @JoinColumn(name = "email_address",  nullable = false)
     @ManyToOne
