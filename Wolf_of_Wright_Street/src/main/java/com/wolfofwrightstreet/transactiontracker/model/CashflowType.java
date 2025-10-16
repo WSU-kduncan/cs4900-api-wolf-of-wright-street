@@ -18,6 +18,6 @@ public class CashflowType {
     @Column(name = "cashflow_type_description", length = 255, nullable = true)
     String cashflowTypeDescription;
 
-    @Column(name = "cashflow_type_factor", columnDefinition = "SMALLINT", nullable = false)
+    @Column(name = "cashflow_type_factor", columnDefinition = "TINYINT", nullable = false)
     Integer cashflowTypeFactor;
 }
