@@ -9,10 +9,10 @@ public class TransactionCategory {
 
     @Id
     @Column(name = "category_name", length = 20, nullable = false)
-    private String name;
+    private String category_name;
 
     @Column(name = "category_description")
-    private String description;
+    private String category_description;
 
     @ManyToOne
     @JoinColumn(name = "cashflow_type_name", nullable = false)
