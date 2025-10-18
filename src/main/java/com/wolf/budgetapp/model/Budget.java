@@ -3,8 +3,9 @@ package com.wolf.budgetapp.model;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import com.wolf.budgetapp.model.BudgetID;
+import lombok.Data;
 
-
+@Data
 @Entity
 @Table(name = "BUDGET")
 public class Budget {

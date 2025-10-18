@@ -2,7 +2,9 @@ package com.wolf.budgetapp.model;
 
 import jakarta.persistence.*;
 import java.util.List;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "TRANSACTION_CATEGORY")
 public class TransactionCategory {

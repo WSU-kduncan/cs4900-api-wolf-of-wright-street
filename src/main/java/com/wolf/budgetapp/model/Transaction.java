@@ -2,8 +2,10 @@ package com.wolf.budgetapp.model;
 
 import jakarta.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.Instant;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "TRANSACTION")
 public class Transaction {
@@ -22,7 +24,7 @@ public class Transaction {
     private TransactionCategory category;
 
     @Column(name = "transaction_date", nullable = false)
-    private LocalDateTime transactionDate = LocalDateTime.now();
+    private Instant transactionDateTime;
 
     @Column(name = "transaction_description")
     private String description;
