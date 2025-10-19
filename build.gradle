@@ -5,7 +5,7 @@ plugins {
 	id 'com.diffplug.spotless' version '8.0.0'
 }
 
-group = 'com.example'
+group = 'com.wolf.budgetapp'
 version = '0.0.1-SNAPSHOT'
 description = 'Demo project for Spring Boot'
 
@@ -35,35 +35,39 @@ implementation 'org.springframework.boot:spring-boot-starter-validation'
 implementation 'org.springframework.boot:spring-boot-starter-web'
 testAnnotationProcessor 'org.projectlombok:lombok:1.18.38'
 testCompileOnly 'org.projectlombok:lombok:1.18.38'
+// Added these for gradle clean to work
+// --- TEST DEPENDENCIES (these fix your missing imports) ---
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 spotless {
-    format 'misc', {
-        target '*.gradle', '.gitattributes', '.gitignore'
-        trimTrailingWhitespace()
-        leadingSpacesToTabs()
-        endWithNewline()
-    }
-    java {
-        importOrder()
-        removeUnusedImports()
-        forbidWildcardImports()
-        cleanthat()
-        palantirJavaFormat('2.74.0').style("GOOGLE")
-        formatAnnotations()
-    }
-    json {
-        target 'src/**/*.json'
-        jackson()
-            .feature('INDENT_OUTPUT', true)
-            .feature('ORDER_MAP_ENTRIES_BY_KEYS', true)
-    }
-    yaml {
-        target 'src/**/*.yaml'
-        jackson()
-            .feature('INDENT_OUTPUT', true)
-            .feature('ORDER_MAP_ENTRIES_BY_KEYS', true)
-    }
+	format 'misc', {
+		target '*.gradle', '.gitattributes', '.gitignore'
+		trimTrailingWhitespace()
+		leadingSpacesToTabs()
+		endWithNewline()
+	}
+	java {
+		importOrder()
+		removeUnusedImports()
+		forbidWildcardImports()
+		cleanthat()
+		palantirJavaFormat('2.74.0').style("GOOGLE")
+		formatAnnotations()
+	}
+	json {
+		target 'src/**/*.json'
+		jackson()
+			.feature('INDENT_OUTPUT', true)
+			.feature('ORDER_MAP_ENTRIES_BY_KEYS', true)
+	}
+	yaml {
+		target 'src/**/*.yaml'
+		jackson()
+			.feature('INDENT_OUTPUT', true)
+			.feature('ORDER_MAP_ENTRIES_BY_KEYS', true)
+	}
 }
 
 tasks.named('test') {

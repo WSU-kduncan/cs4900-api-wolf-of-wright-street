@@ -1,0 +1,13 @@
+meta:
+  name: Get User by Last Name
+  type: http
+request:
+  url: http://localhost:8080/user/lastname/{{lastName}}
+  method: GET
+  headers:
+    - name: Accept
+      value: application/json
+  variables:
+    - name: lastName
+      value: Schmoe
+
