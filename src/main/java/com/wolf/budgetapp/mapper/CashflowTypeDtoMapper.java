@@ -11,11 +11,10 @@ import org.mapstruct.Mapper;
     componentModel = "spring",
     uses = {CashflowTypeService.class})
 public interface CashflowTypeDtoMapper {
-    
-    CashflowType toEntity(CashflowTypeDto cashflowTypeDto) throws EntityNotFoundException;
 
-    CashflowTypeDto toDto(CashflowType cashflowType) throws EntityNotFoundException;
+  CashflowType toEntity(CashflowTypeDto cashflowTypeDto) throws EntityNotFoundException;
 
-    List<CashflowTypeDto> toDtoList(List<CashflowType> cashflowTypes) throws EntityNotFoundException;
+  CashflowTypeDto toDto(CashflowType cashflowType) throws EntityNotFoundException;
 
+  List<CashflowTypeDto> toDtoList(List<CashflowType> cashflowTypes) throws EntityNotFoundException;
 }

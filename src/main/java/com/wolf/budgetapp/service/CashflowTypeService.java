@@ -11,26 +11,26 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Service
 public class CashflowTypeService {
-    
-    private final CashflowTypeRepository cashflowTypeRepository;
 
-    public List<CashflowType> getCashflowTypes() {
-        return cashflowTypeRepository.findAll();
-    }
+  private final CashflowTypeRepository cashflowTypeRepository;
 
-    public CashflowType getCashflowByName(String name) throws EntityNotFoundException {
-        Optional<CashflowType> result = cashflowTypeRepository.findById(name);
-        if(result.isEmpty()) {
-            throw new EntityNotFoundException("Cashflow Type named " + name + " not found");
-        }
-        return result.get();
-    }
+  public List<CashflowType> getCashflowTypes() {
+    return cashflowTypeRepository.findAll();
+  }
 
-    public CashflowType getCashflowByFactor(Byte factor) throws EntityNotFoundException {
-        Optional<CashflowType> result = cashflowTypeRepository.findByFactor(factor);
-        if(result.isEmpty()) {
-            throw new EntityNotFoundException("Cashflow Type with factor " + factor + " not found");
-        }
-        return result.get();
+  public CashflowType getCashflowByName(String name) throws EntityNotFoundException {
+    Optional<CashflowType> result = cashflowTypeRepository.findById(name);
+    if (result.isEmpty()) {
+      throw new EntityNotFoundException("Cashflow Type named " + name + " not found");
     }
+    return result.get();
+  }
+
+  public CashflowType getCashflowByFactor(Byte factor) throws EntityNotFoundException {
+    Optional<CashflowType> result = cashflowTypeRepository.findByFactor(factor);
+    if (result.isEmpty()) {
+      throw new EntityNotFoundException("Cashflow Type with factor " + factor + " not found");
+    }
+    return result.get();
+  }
 }

@@ -1,5 +1,7 @@
 package com.wolf.budgetapp.dto;
 
+import com.wolf.budgetapp.model.TransactionCategory;
+import java.util.List;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Value;
@@ -8,12 +10,12 @@ import lombok.Value;
 @Data
 @Value
 public class CashflowTypeDto {
-    String cashflowName;
+  String cashflowName;
 
-    String cashflowDescription;
+  String cashflowDescription;
 
-    Byte factor;
+  Byte factor;
 
-    // Is this needed?
-    //List<TransactionCategory> categories;
+  // Is this needed?
+  List<TransactionCategory> categories;
 }
