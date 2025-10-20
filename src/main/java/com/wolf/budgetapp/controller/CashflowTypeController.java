@@ -39,8 +39,10 @@ public class CashflowTypeController {
             cashflowTypeDtoMapper.toDto(cashflowTypeService.getCashflowByName(name)), HttpStatus.OK);
     }
 
-    // Search by Type Factor
-    //@GetMapping(path = "/{}")
-
+    @GetMapping(path = "/{cashflow_type_factor}")
+    ResponseEntity<CashflowTypeDto> getCashflowByFactor(@PathVariable Byte factor) {
+        return new ResponseEntity<>(
+            cashflowTypeDtoMapper.toDto(cashflowTypeService.getCashflowByFactor(factor)), HttpStatus.OK);
+    }
 
 }
