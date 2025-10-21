@@ -36,6 +36,10 @@ implementation 'org.springframework.boot:spring-boot-starter-web'
 implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
 testAnnotationProcessor 'org.projectlombok:lombok:1.18.38'
 testCompileOnly 'org.projectlombok:lombok:1.18.38'
+// Added these for gradle clean to work
+// --- TEST DEPENDENCIES (these fix your missing imports) ---
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 spotless {

@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Wolf_of_Wright_Street_Service",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
