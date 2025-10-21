@@ -17,8 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(
     path = "/cashflow_type",
-    produces = MediaType.APPLICATION_JSON_VALUE,
-    consumes = MediaType.APPLICATION_JSON_VALUE)
+    produces = MediaType.APPLICATION_JSON_VALUE)
 public class CashflowTypeController {
 
   private final CashflowTypeService cashflowTypeService;
@@ -32,14 +31,15 @@ public class CashflowTypeController {
   }
 
   // Search by Name (also is the identifier)
-  @GetMapping(path = "/cashflow_type_name")
-  ResponseEntity<CashflowTypeDto> getCashflowByName(@PathVariable String name) {
+  @GetMapping(path = "/{name}")
+  ResponseEntity<CashflowTypeDto> getCashflowByName(@PathVariable("name") String name) {
     return new ResponseEntity<>(
         cashflowTypeDtoMapper.toDto(cashflowTypeService.getCashflowByName(name)), HttpStatus.OK);
   }
 
-  @GetMapping(path = "/cashflow_type_factor")
-  ResponseEntity<CashflowTypeDto> getCashflowByFactor(@PathVariable Byte factor) {
+  // Search by Factor
+  @GetMapping(path = "factor/{factor}")
+  ResponseEntity<CashflowTypeDto> getCashflowByFactor(@PathVariable("factor") Byte factor) {
     return new ResponseEntity<>(
         cashflowTypeDtoMapper.toDto(cashflowTypeService.getCashflowByFactor(factor)),
         HttpStatus.OK);
