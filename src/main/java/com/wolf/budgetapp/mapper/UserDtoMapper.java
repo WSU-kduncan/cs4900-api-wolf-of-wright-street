@@ -10,12 +10,12 @@ import org.mapstruct.Mapper;
 // mapper anotation uses interface below to automatically map entities to dtos on build 
 @Mapper(
     componentModel = "spring",
-    uses = {StudentService.class}
+    uses = {UserService.class}
 )
 public interface UserDtoMapper {
 
     // converts User DTOs into User entities
-    User toEntity(StudentDto studentDto) throws EntityNotFoundException;
+    User toEntity(UserDto studentDto) throws EntityNotFoundException;
 
     // converts User entities into DTOs
     UserDto toDto(User user) throws EntityNotFoundException; 
