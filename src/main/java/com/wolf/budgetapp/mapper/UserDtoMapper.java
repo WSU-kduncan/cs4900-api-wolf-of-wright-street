@@ -2,39 +2,24 @@ package com.wolf.budgetapp.mapper;
 
 import com.wolf.budgetapp.dto.UserDto;
 import com.wolf.budgetapp.model.User;
+import com.wolf.budgetapp.service.UserService;
+import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
-import java.util.stream.Collectors;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
 
-@Component
-public class UserDtoMapper {
+// mapper anotation uses interface below to automatically map entities to dtos on build 
+@Mapper(
+    componentModel = "spring",
+    uses = {StudentService.class}
+)
+public interface UserDtoMapper {
 
-  public UserDto toDto(User user) {
-    if (user == null) {
-      return null;
-    }
+    // converts User DTOs into User entities
+    User toEntity(StudentDto studentDto) throws EntityNotFoundException;
 
-    UserDto dto = new UserDto();
-    dto.setEmailAddress(user.getEmailAddress());
-    dto.setFirstName(user.getFirstName());
-    dto.setLastName(user.getLastName());
-    return dto;
-  }
+    // converts User entities into DTOs
+    UserDto toDto(User user) throws EntityNotFoundException; 
 
-  // 👇 This method is required for your controller line to work!
-  public List<UserDto> toDtoList(List<User> users) {
-    return users.stream().map(this::toDto).collect(Collectors.toList());
-  }
-
-  public User toEntity(UserDto dto) {
-    if (dto == null) {
-      return null;
-    }
-
-    User user = new User();
-    user.setEmailAddress(dto.getEmailAddress());
-    user.setFirstName(dto.getFirstName());
-    user.setLastName(dto.getLastName());
-    return user;
-  }
+    // Returns a list of UserDTOs given a list of User entities
+    List<UserDto> toDtoList(List<User> userList) throws EntityNotFoundException;
 }

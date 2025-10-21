@@ -1,17 +1,17 @@
 package com.wolf.budgetapp.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Value;
 
-@Data
-// @Value
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
+@Value
 public class UserDto {
-  private String emailAddress;
-  private String firstName;
-  private String lastName;
+
+  String emailAddress;
+
+  String firstName;
+
+  String lastName;
 }
