@@ -18,8 +18,7 @@ import java.util.List;
 // sets base endpoint to /user
 @RequestMapping(
     path = "user",
-    produces = MediaType.APPLICATION_JSON_VALUE,
-    consumes = MediaType.APPLICATION_JSON_VALUE)
+    produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserController {
 
     private final UserDtoMapper userDtoMapper;
