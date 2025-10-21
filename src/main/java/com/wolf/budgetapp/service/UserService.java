@@ -4,6 +4,7 @@ import com.wolf.budgetapp.model.User;
 import com.wolf.budgetapp.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +19,11 @@ public class UserService {
   }
 
   public User getUserByEmail(String email) {
-    return userRepository
-        .findByEmailAddress(email)
-        .orElseThrow(() -> new EntityNotFoundException("Error: User (" + email + ") not found"));
+    Optional<User> result = userRepository.findById(email);
+    if (result.isEmpty()) {
+      throw new EntityNotFoundException("User (" + email + ") not found");
+    }
+    return result.get();
   }
 
   public List<User> getUsersByLastName(String lastName) {

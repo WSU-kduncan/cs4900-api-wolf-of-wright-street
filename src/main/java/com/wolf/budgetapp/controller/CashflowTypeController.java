@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(
-    path = "/cashflow_type",
-    produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/cashflow_type", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CashflowTypeController {
 
   private final CashflowTypeService cashflowTypeService;
