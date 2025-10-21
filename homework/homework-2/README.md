@@ -9,3 +9,16 @@ As a note, these screenshots feature the IP of my WSL2 instance instead of local
 
 ## GET Request (Search Cashflow Type by Factor)
 ![By-Factor](./getCashflowTypeByFactor.png)
+
+
+### GET Request (All Users)
+
+![get-all-users](getAllUsers.png)
+
+### GET Request (User by ID)
+
+![get-user-by-email](getUserByEmail.png)
+
+### GET Request (User by last name)
+
+![get-user-by-lastname](getLastName.png)
