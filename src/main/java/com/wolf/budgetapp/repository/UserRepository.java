@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends JpaRepository<User, String> {
 
   // findAll() returns list
-  Optional<User> findByEmailAddress(String emailAddess);
+  Optional<User> findByEmailAddress(String emailAddress);
 
   List<User> findByLastName(String lastName);
 }
