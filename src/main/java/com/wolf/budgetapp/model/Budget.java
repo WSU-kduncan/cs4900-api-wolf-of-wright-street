@@ -10,9 +10,11 @@ import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import lombok.Data;
+import lombok.Builder;
 
 @Data
 @Entity
+@Builder
 @Table(name = "BUDGET")
 public class Budget {
   // make composite key a class
