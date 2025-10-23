@@ -9,8 +9,10 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
+import lombok.Builder;
 import lombok.Data;
 
+@Builder
 @Data
 @Entity
 @Table(name = "BUDGET")
