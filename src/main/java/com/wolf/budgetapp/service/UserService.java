@@ -26,7 +26,7 @@ public class UserService {
     return result.get();
   }
 
-  public List<User> getUserBylastName(String lastName) {
+  public List<User> getUsersByLastName(String lastName) {
     Optional<List<User>> result = userRepository.findByLastName(lastName);
     if (result.isEmpty()) {
         throw new EntityNotFoundException("User (" + lastName + ") not found");
