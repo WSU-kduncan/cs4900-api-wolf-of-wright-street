@@ -7,9 +7,11 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.List;
 import lombok.Data;
+import lombok.Builder;
 
 @Data
 @Entity
+@Builder
 @Table(name = "USER")
 public class User {
 

@@ -11,9 +11,11 @@ import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import java.time.Instant;
 import lombok.Data;
+import lombok.Builder;
 
 @Data
 @Entity
+@Builder
 @Table(name = "TRANSACTION")
 public class Transaction {
 
