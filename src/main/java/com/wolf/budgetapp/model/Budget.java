@@ -1,36 +1,36 @@
 package com.wolf.budgetapp.model;
 
-// import jakarta.persistence.*;
-import jakarta.persistence.Column;
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
-import jakarta.persistence.Table;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.JoinColumn;
 import lombok.Data;
-import lombok.Builder;
 
 @Data
 @Entity
-@Builder
 @Table(name = "BUDGET")
 public class Budget {
-  // make composite key a class
-  @EmbeddedId
-  private BudgetID id;
 
-  @ManyToOne
-  @MapsId("emailAddress")
-  @JoinColumn(name = "email_address", nullable = false)
-  private User user;
+    @Id
+    @Column(name = "email_address", nullable = false, length = 20)
+    String emailAddress;
 
-  @ManyToOne
-  @MapsId("categoryName")
-  @JoinColumn(name = "category_name", nullable = false)
-  private TransactionCategory category;
+    @Id
+    @Column(name = "category_name", nullable = false, length = 20)
+    String categoryName;
 
-  @Column(name = "budget_amount", nullable = false, precision = 14, scale = 4)
-  private BigDecimal amount;
+    @Column(name = "budget_period", nullable = false)
+    LocalDate budgetPeriod;
+
+    @Column(name = "budget_amount", nullable = false, precision = 14, scale = 4)
+    BigDecimal budgetAmount;
+
+    @ManyToOne
+    @JoinColumn(name = "email_address", insertable = false, updatable = false)
+    private User user;
 }

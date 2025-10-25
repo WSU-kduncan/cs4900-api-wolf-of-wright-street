@@ -1,33 +1,31 @@
 package com.wolf.budgetapp.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Column;
 import jakarta.persistence.Table;
 import java.util.List;
 import lombok.Data;
-import lombok.Builder;
 
 @Data
 @Entity
-@Builder
 @Table(name = "USER")
 public class User {
 
-  @Id
-  @Column(name = "email_address", length = 255, nullable = false)
-  private String emailAddress;
+    @Id
+    @Column(name = "email_address", nullable = false, length = 255)
+    String emailAddress;
 
-  @Column(name = "first_name", length = 50, nullable = false)
-  private String firstName;
+    @Column(name = "first_name", nullable = false, length = 50)
+    String firstName;
 
-  @Column(name = "last_name", length = 50, nullable = false)
-  private String lastName;
+    @Column(name = "last_name", nullable = false, length = 50)
+    String lastName;
 
-  @OneToMany(mappedBy = "user")
-  private List<Transaction> transactions;
+    @OneToMany(mappedBy = "user")
+    private List<Budget> budgets;
 
-  @OneToMany(mappedBy = "user")
-  private List<Budget> budgets;
+    @OneToMany(mappedBy = "user")
+    private List<Transaction> transactions;
 }

@@ -1,11 +1,10 @@
 package com.wolf.budgetapp.model;
 
-// import jakarta.persistence.*;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Column;
 import java.util.List;
 import lombok.Data;
 
@@ -13,17 +12,16 @@ import lombok.Data;
 @Entity
 @Table(name = "CASHFLOW_TYPE")
 public class CashflowType {
+    @Id
+    @Column(name = "cashflow_type_name", nullable = false, length = 7)
+    String cashFlowTypeName;
 
-  @Id
-  @Column(name = "cashflow_type_name", length = 7, nullable = false)
-  private String cashflowName;
+    @Column(name = "cashflow_type_description", length = 255)
+    String cashFlowTypeDescription;
 
-  @Column(name = "cashflow_type_description")
-  private String cashflowDescription;
+    @Column(name = "cashflow_type_factor", nullable = false)
+    Byte cashFlowTypeFactor;
 
-  @Column(name = "cashflow_type_factor", nullable = false)
-  private Byte factor;
-
-  @OneToMany(mappedBy = "cashflowType")
-  private List<TransactionCategory> categories;
+    @OneToMany(mappedBy = "cashFlowType")
+    private List<TransactionCategory> transactionCategories;
 }
