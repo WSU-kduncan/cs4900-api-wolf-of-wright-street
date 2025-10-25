@@ -17,7 +17,7 @@ import lombok.Data;
 public class Budget {
 
     @Id
-    @Column(name = "email_address", nullable = false, length = 20)
+    @Column(name = "email_address", nullable = false, length = 255)
     String emailAddress;
 
     @Id

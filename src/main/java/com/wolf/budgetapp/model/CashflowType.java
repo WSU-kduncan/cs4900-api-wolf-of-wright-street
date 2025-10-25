@@ -13,7 +13,7 @@ import lombok.Data;
 @Table(name = "CASHFLOW_TYPE")
 public class CashflowType {
     @Id
-    @Column(name = "cashflow_type_name", nullable = false, length = 7)
+    @Column(name = "cashflow_type_name", nullable = false, length = 8)
     String cashFlowTypeName;
 
     @Column(name = "cashflow_type_description", length = 255)

@@ -15,11 +15,11 @@ import lombok.Data;
 @Table(name = "TRANSACTION_CATEGORY")
 public class TransactionCategory {
     @Id
-    @Column(name = "category_name", nullable = false, length = 20)
+    @Column(name = "category_name", nullable = false, length = 25)
     String categoryName;
 
     @Id
-    @Column(name = "cashflow_type_name", nullable = false, length = 7)
+    @Column(name = "cashflow_type_name", nullable = false, length = 8)
     String cashFlowTypeName;
 
     @Column(name = "category_description", length = 255)
