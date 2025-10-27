@@ -14,7 +14,26 @@ public class TransactionCategoryService {
     
     private final TransactionCategoryRepository transactionCategoryRepository;
 
+    // finds all transaction categories
     public List<TransactionCategory> getAllTransactionCategories() {
         return transactionCategoryRepository.findAll();
+    }
+
+    // finds categories by categoryName
+    public TransactionCategory getTransactionCategoryByName(String categoryName) {
+        Optional<TransactionCategory> result = transactionCategoryRepository.findByCategoryName(categoryName);
+        if (result.isEmpty()) {
+            throw new EntityNotFoundException("Transaction category (" + categoryName + ") not found");
+        }
+        return result.get();
+    }
+
+    // finds categories by categoryDescription
+    public TransactionCategory getTransactionCategoryByDescription(String categoryDescription) {
+        Optional<TransactionCategory> result = transactionCategoryRepository.findByCategoryDescription(categoryDescription);
+        if (result.isEmpty()) {
+            throw new EntityNotFoundException("Transaction description (" + categoryDescription + ") not found");
+        }
+        return result.get();
     }
 }

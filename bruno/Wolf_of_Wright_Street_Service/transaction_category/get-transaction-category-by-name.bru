@@ -1,0 +1,15 @@
+meta {
+    name: get-transaction-category-by-name
+    type: http
+    seq: 2
+}
+
+get {
+    url: http://localhost:8080/Wolf_of_Wright_Street_Service/transaction_category/Bills
+    body: none
+    auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

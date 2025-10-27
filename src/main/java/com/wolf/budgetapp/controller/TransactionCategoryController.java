@@ -29,7 +29,12 @@ public class TransactionCategoryController {
 
     @GetMapping("/{categoryName}")
     public ResponseEntity<TransactionCategoryDto> getTransactionCategoryByName(@PathVariable String categoryName) {
-        return new ResponseEntity<>(transactionCategoryDtoMapper.toDto(transactionCategoryService.getTransactionCategoryByName()), HttpStatus.OK);
+        return new ResponseEntity<>(transactionCategoryDtoMapper.toDto(transactionCategoryService.getTransactionCategoryByName(categoryName)), HttpStatus.OK);
+    }
+
+    @GetMapping("/description/{categoryDescription}")
+    public ResponseEntity<TransactionCategoryDto> getTransactionCategoryByDescription(@PathVariable String categoryDescription) {
+        return new ResponseEntity<>(transactionCategoryDtoMapper.toDto(transactionCategoryService.getTransactionCategoryByDescription(categoryDescription)), HttpStatus.OK);
     }
 
 }
