@@ -63,7 +63,7 @@ public class CashflowTypeController {
   // Edit Cashflow Type (PUT)
   @PutMapping(path = "/{name}")
   ResponseEntity<Object> updateCashflowType(
-      @PathVariable String name, @RequestBody CashflowTypeDto cashflowTypeDto) {
+      @PathVariable("name") String name, @RequestBody CashflowTypeDto cashflowTypeDto) {
     try {
       // Update Cashflow Type via Service, return OK status if successful
       CashflowType updatedCashflowType =
