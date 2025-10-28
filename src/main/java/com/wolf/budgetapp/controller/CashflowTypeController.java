@@ -2,8 +2,8 @@ package com.wolf.budgetapp.controller;
 
 import com.wolf.budgetapp.dto.CashflowTypeDto;
 import com.wolf.budgetapp.mapper.CashflowTypeDtoMapper;
-import com.wolf.budgetapp.service.CashflowTypeService;
 import com.wolf.budgetapp.model.CashflowType;
+import com.wolf.budgetapp.service.CashflowTypeService;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -62,14 +62,16 @@ public class CashflowTypeController {
 
   // Edit Cashflow Type (PUT)
   @PutMapping(path = "/{name}")
-  ResponseEntity<Object> updateCashflowType(@PathVariable String name, @RequestBody CashflowTypeDto cashflowTypeDto) {
+  ResponseEntity<Object> updateCashflowType(
+      @PathVariable String name, @RequestBody CashflowTypeDto cashflowTypeDto) {
     try {
       // Update Cashflow Type via Service, return OK status if successful
-      CashflowType updatedCashflowType = cashflowTypeService.updateCashflowTypeByName(name, cashflowTypeDto);
+      CashflowType updatedCashflowType =
+          cashflowTypeService.updateCashflowTypeByName(name, cashflowTypeDto);
       return new ResponseEntity<>(cashflowTypeDtoMapper.toDto(updatedCashflowType), HttpStatus.OK);
-    } catch(EntityNotFoundException e) {
+    } catch (EntityNotFoundException e) {
       return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.NOT_FOUND);
-    } catch(IllegalArgumentException e) {
+    } catch (IllegalArgumentException e) {
       return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
     }
   }
