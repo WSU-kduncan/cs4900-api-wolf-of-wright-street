@@ -29,7 +29,7 @@ public class UserService {
   public List<User> getUsersByLastName(String lastName) {
     Optional<List<User>> result = userRepository.findByLastName(lastName);
     if (result.isEmpty()) {
-        throw new EntityNotFoundException("User (" + lastName + ") not found");
+      throw new EntityNotFoundException("User (" + lastName + ") not found");
     }
     return result.get();
   }

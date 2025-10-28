@@ -4,9 +4,7 @@ package com.wolf.budgetapp.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import java.util.List;
 import lombok.Data;
 
 @Data
@@ -24,6 +22,6 @@ public class CashflowType {
   @Column(name = "cashflow_type_factor", nullable = false)
   private Byte factor;
 
-  @OneToMany(mappedBy = "cashflowType")
-  private List<TransactionCategory> categories;
+  // @OneToMany(mappedBy = "cashflowType")
+  // private List<TransactionCategory> categories;
 }

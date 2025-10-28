@@ -8,8 +8,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.List;
-import lombok.Data;
 import lombok.Builder;
+import lombok.Data;
 
 @Data
 @Entity
