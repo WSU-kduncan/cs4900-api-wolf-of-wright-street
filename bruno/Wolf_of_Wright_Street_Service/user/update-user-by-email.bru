@@ -1,0 +1,28 @@
+meta {
+  name: update-user-by-email
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://localhost:8080/Wolf_of_Wright_Street_Service/users/daniel@example.com
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+      "emailAddress": "daniel@example.com",
+      "firstName": "Dan",
+      "lastName": "Cronauer"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
