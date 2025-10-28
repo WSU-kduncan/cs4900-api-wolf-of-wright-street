@@ -6,6 +6,7 @@ import com.wolf.budgetapp.service.CashflowTypeService;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 
 @Mapper(
     componentModel = "spring",
@@ -17,4 +18,6 @@ public interface CashflowTypeDtoMapper {
   CashflowTypeDto toDto(CashflowType cashflowType) throws EntityNotFoundException;
 
   List<CashflowTypeDto> toDtoList(List<CashflowType> cashflowTypes) throws EntityNotFoundException;
+
+  void updateEntity(CashflowTypeDto dto, @MappingTarget CashflowType entity);
 }

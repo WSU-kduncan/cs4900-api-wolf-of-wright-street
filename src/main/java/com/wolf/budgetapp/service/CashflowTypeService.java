@@ -46,9 +46,14 @@ public class CashflowTypeService {
     }
 
   // Edit Existing Cashflow Type (PUT)
-  public CashflowType updateCashflowTypeByName(String email, CashflowTypeDto cashflowTypeDto) 
+  public CashflowType updateCashflowTypeByName(String name, CashflowTypeDto cashflowTypeDto) 
     throws EntityNotFoundException, IllegalArgumentException {
-      cashflowTypeDtoMapper.updateCashflowTypeByName
+      if (cashflowTypeDto.getCashflowName() == null || cashflowTypeDto.getCashflowName().isBlank()) {
+        throw new IllegalArgumentException("Name is required!");
+      }
+      CashflowType existingCashflowType = cashflowTypeRepository.findById(name).orElseThrow(() -> new EntityNotFoundException("User not found with name: " + name));
+      cashflowTypeDtoMapper.updateEntity(cashflowTypeDto, existingCashflowType);
 
+      return cashflowTypeRepository.save(existingCashflowType);
   }
 }
