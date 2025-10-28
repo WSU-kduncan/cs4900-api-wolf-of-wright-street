@@ -42,4 +42,21 @@ public class CashflowTypeController {
         cashflowTypeDtoMapper.toDto(cashflowTypeService.getCashflowByFactor(factor)),
         HttpStatus.OK);
   }
+  
+  @PutMapping("/{name}")
+  public ResponseEntity<CashflowTypeDto> updateCashflowType(
+      @PathVariable("name") String name,
+      @RequestBody CashflowTypeDto cashflowTypeDto) {
+
+    try {
+      CashflowType updated = cashflowTypeService.updateCashflowTypeByName(name, cashflowTypeDto);
+      return new ResponseEntity<>(cashflowTypeDtoMapper.toDto(updated), HttpStatus.OK);
+
+    } catch (EntityNotFoundException e) {
+      return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+
+    } catch (IllegalArgumentException e) {
+      return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+    }
+  }
 }
