@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -80,6 +81,20 @@ public class UserController {
     } catch (IllegalArgumentException e) {
       // Invalid input
       return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  // delete route
+  @DeleteMapping("/{email}")
+  public ResponseEntity<String> deleteUser(@PathVariable String email) {
+    try {
+      userService.deleteUserByEmail(email);
+      return new ResponseEntity<>("User deleted successfully.", HttpStatus.OK);
+    } catch (EntityNotFoundException e) {
+      return new ResponseEntity<>("User not found.", HttpStatus.NOT_FOUND);
+    } catch (Exception e) {
+      return new ResponseEntity<>(
+          "Error deleting user: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 }
