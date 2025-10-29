@@ -1,6 +1,5 @@
 package com.wolf.budgetapp.dto;
 
-import com.wolf.budgetapp.model.CashflowType;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Value;
