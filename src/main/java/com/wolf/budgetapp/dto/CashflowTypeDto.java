@@ -17,5 +17,5 @@ public class CashflowTypeDto {
   Byte factor;
 
   // Is this needed?
-  List<TransactionCategory> categories;
+  // List<TransactionCategory> categories;
 }
