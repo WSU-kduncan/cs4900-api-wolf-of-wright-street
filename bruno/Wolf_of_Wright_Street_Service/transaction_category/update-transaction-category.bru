@@ -1,0 +1,25 @@
+meta {
+  name: update-transaction-category
+  type: http
+  seq: 5
+}
+
+put {
+  url: http://localhost:8080/Wolf_of_Wright_Street_Service/transaction_category/Movies
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "categoryName": "Movies",
+    "categoryDescription": "Newest description",
+    "cashflowName": "Expense"
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

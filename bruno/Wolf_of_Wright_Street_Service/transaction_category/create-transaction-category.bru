@@ -1,0 +1,25 @@
+meta {
+  name: create-transaction-category
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:8080/Wolf_of_Wright_Street_Service/transaction_category
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "categoryName": "Investments",
+    "categoryDescription": "Stonks",
+    "cashflowName": "Income"
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

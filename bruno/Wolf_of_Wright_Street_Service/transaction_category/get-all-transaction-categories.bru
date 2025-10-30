@@ -1,0 +1,16 @@
+meta {
+  name: get-all-transaction-categories
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost:8080/Wolf_of_Wright_Street_Service/transaction_category
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

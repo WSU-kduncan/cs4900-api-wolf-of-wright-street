@@ -10,10 +10,14 @@ import jakarta.persistence.Table;
 import java.util.List;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 @Data
 @Entity
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "TRANSACTION_CATEGORY")
 public class TransactionCategory {
 
