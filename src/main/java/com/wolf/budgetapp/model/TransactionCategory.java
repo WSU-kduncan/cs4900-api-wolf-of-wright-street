@@ -8,10 +8,12 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.List;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Entity
+@Builder
 @Table(name = "TRANSACTION_CATEGORY")
 public class TransactionCategory {
 

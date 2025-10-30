@@ -1,0 +1,23 @@
+meta {
+  name: create-cashflow-type
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:8080/Wolf_of_Wright_Street_Service/cashflow_type/addCashflowType
+  body: json
+  auth: inherit
+}
+
+body:json {
+    {
+      "cashflowName": "Income2",
+      "cashflowDescription": "Even more income!?",
+      "factor": 2
+    }
+}
+
+settings {
+  encodeUrl: true
+}

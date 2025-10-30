@@ -10,10 +10,12 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import java.time.Instant;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Entity
+@Builder
 @Table(name = "TRANSACTION")
 public class Transaction {
 
