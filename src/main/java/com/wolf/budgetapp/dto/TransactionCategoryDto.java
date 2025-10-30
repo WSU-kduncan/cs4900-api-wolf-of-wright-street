@@ -9,6 +9,7 @@ import lombok.Value;
 @Value
 public class TransactionCategoryDto {
 
+    // only expose necesarry api fields; entity relationships not necesarry at this level
     private String categoryName;
 
     private String categoryDescription;

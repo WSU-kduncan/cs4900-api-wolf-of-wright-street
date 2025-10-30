@@ -19,7 +19,6 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Table(name = "BUDGET")
 public class Budget {
   // make composite key a class

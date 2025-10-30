@@ -8,7 +8,6 @@ import com.wolf.budgetapp.mapper.TransactionCategoryDtoMapper;
 import com.wolf.budgetapp.model.CashflowType;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -29,28 +28,29 @@ public class TransactionCategoryService {
 
     // finds categories by categoryName
     public TransactionCategory getTransactionCategoryByName(String categoryName) {
-        Optional<TransactionCategory> result = transactionCategoryRepository.findByCategoryName(categoryName);
-        if (result.isEmpty()) {
-            throw new EntityNotFoundException("Transaction category (" + categoryName + ") not found");
-        }
-        return result.get();
+        TransactionCategory category = transactionCategoryRepository.findById(categoryName)
+        .orElseThrow(() -> new EntityNotFoundException("TransactionCategory not found: " + categoryName));
+
+        return category;
     }
 
-    // finds categories by categoryDescription
-    public TransactionCategory getTransactionCategoryByDescription(String categoryDescription) {
-        Optional<TransactionCategory> result = transactionCategoryRepository.findByCategoryDescription(categoryDescription);
-        if (result.isEmpty()) {
-            throw new EntityNotFoundException("Transaction description (" + categoryDescription + ") not found");
-        }
-        return result.get();
+    // finds category description associated with given categoryName
+    public String getDescriptionByCategoryName(String categoryName) {
+        TransactionCategory category = transactionCategoryRepository.findById(categoryName)
+        .orElseThrow(() -> new EntityNotFoundException("TransactionCategory not found: " + categoryName));
+
+        return category.getCategoryDescription();
+        
     }
 
-    public TransactionCategory createTransactionCategory(TransactionCategoryDto transactionCategoryDto) throws EntityNotFoundException {
+    // creates new TransactionCategory
+    public TransactionCategory createTransactionCategory(TransactionCategoryDto transactionCategoryDto) {
         return transactionCategoryRepository.saveAndFlush(
             transactionCategoryDtoMapper.toEntity(transactionCategoryDto)
         );
     }
 
+    // updates existing TransactionCategory with any new fields in RequestBody
     public TransactionCategory updateTransactionCategory(String categoryName, TransactionCategoryDto updatedTransactionCategoryDto) {
         TransactionCategory transactionCategory = transactionCategoryRepository.findById(categoryName)
         .orElseThrow(() -> new EntityNotFoundException("TransactionCategory not found: " + categoryName));

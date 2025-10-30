@@ -25,23 +25,28 @@ public class TransactionCategoryController {
 
 
     private final TransactionCategoryDtoMapper transactionCategoryDtoMapper;
+    
     private final TransactionCategoryService transactionCategoryService;
 
+    // returns all existing transaction categories
     @GetMapping
     public ResponseEntity<List<TransactionCategoryDto>> getAllTransactionCategories() {
         return new ResponseEntity<>(transactionCategoryDtoMapper.toDtoList(transactionCategoryService.getAllTransactionCategories()), HttpStatus.OK);   
     }
 
+    // returns category associated with given categoryName
     @GetMapping("/{categoryName}")
     public ResponseEntity<TransactionCategoryDto> getTransactionCategoryByName(@PathVariable String categoryName) {
         return new ResponseEntity<>(transactionCategoryDtoMapper.toDto(transactionCategoryService.getTransactionCategoryByName(categoryName)), HttpStatus.OK);
     }
 
-    @GetMapping("/description/{categoryDescription}")
-    public ResponseEntity<TransactionCategoryDto> getTransactionCategoryByDescription(@PathVariable String categoryDescription) {
-        return new ResponseEntity<>(transactionCategoryDtoMapper.toDto(transactionCategoryService.getTransactionCategoryByDescription(categoryDescription)), HttpStatus.OK);
+    // returns category description associated with given categoryName as a String
+    @GetMapping(value = "/{categoryName}/description", produces = MediaType.TEXT_PLAIN_VALUE)
+    public ResponseEntity<String> getDescriptionByCategoryName(@PathVariable String categoryName) {
+        return new ResponseEntity<>(transactionCategoryService.getDescriptionByCategoryName(categoryName), HttpStatus.OK);
     }
 
+    // adds new transaction category 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<Object> addTransactionCategory(@RequestBody TransactionCategoryDto transactionCategoryDto) {
         TransactionCategory transactionCategory;
@@ -53,6 +58,7 @@ public class TransactionCategoryController {
         return new ResponseEntity<>(transactionCategoryDtoMapper.toDto(transactionCategory), HttpStatus.OK);
     }
     
+    // updates existing category associated with given categoryName
     @PutMapping(value = "/{categoryName}", consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<Object> updateTransactionCategory(@PathVariable String categoryName, @RequestBody TransactionCategoryDto updatedTransactionCategoryDto) {
         TransactionCategory transactionCategory;
