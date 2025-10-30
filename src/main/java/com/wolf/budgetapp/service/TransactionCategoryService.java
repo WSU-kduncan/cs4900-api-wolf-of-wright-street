@@ -65,7 +65,7 @@ public class TransactionCategoryService {
 
         if (updatedTransactionCategoryDto.getCashflowName() != null) {
             CashflowType cashflowType = cashflowTypeRepository.findById(updatedTransactionCategoryDto.getCashflowName())
-            .orElseThrow(() -> new EntityNotFoundException("CashFlowType not found"));
+            .orElseThrow(() -> new EntityNotFoundException("CashFlowType not found: " + updatedTransactionCategoryDto.getCashflowName()));
             
             transactionCategory.setCashflowType(cashflowType);
         }

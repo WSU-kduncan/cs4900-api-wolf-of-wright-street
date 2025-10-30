@@ -50,12 +50,18 @@ public class TransactionCategoryController {
         } catch (EntityNotFoundException e) {
             return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(transactionCategory, HttpStatus.OK);
+        return new ResponseEntity<>(transactionCategoryDtoMapper.toDto(transactionCategory), HttpStatus.OK);
     }
     
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/{categoryName}", consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<Object> updateTransactionCategory(@PathVariable String categoryName, @RequestBody TransactionCategoryDto updatedTransactionCategoryDto) {
-        
+        TransactionCategory transactionCategory;
+        try {
+            transactionCategory = transactionCategoryService.updateTransactionCategory(categoryName, updatedTransactionCategoryDto);
+        } catch (EntityNotFoundException e) {
+            return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(transactionCategoryDtoMapper.toDto(transactionCategory), HttpStatus.OK);
     }
 
 }

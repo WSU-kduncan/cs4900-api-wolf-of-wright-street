@@ -1,7 +1,7 @@
 package com.wolf.budgetapp.dto;
 
-import com.wolf.budgetapp.model.TransactionCategory;
-import java.util.List;
+// import com.wolf.budgetapp.model.TransactionCategory;
+// import java.util.List;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Value;
