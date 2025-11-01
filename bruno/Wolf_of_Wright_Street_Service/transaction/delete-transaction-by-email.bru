@@ -1,0 +1,20 @@
+meta {
+  name: delete-transaction-by-email
+  type: http
+  seq: 3
+}
+
+delete {
+  url: http://localhost:8080/Wolf_of_Wright_Street_Service/transactions/3
+  body: none
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,7 +1,7 @@
 package com.wolf.budgetapp.service;
 
-// import com.wolf.budgetapp.model.Building;
-// import com.wolf.budgetapp.model.Room;
+import com.wolf.budgetapp.dto.TransactionDto;
+import com.wolf.budgetapp.mapper.TransactionDtoMapper;
 import com.wolf.budgetapp.model.Transaction;
 import com.wolf.budgetapp.model.TransactionCategory;
 import com.wolf.budgetapp.model.User;
@@ -18,6 +18,8 @@ public class TransactionService {
 
   private final TransactionRepository transactionRepository;
 
+  private final TransactionDtoMapper transactionDtoMapper;
+
   public List<Transaction> getAllTransactions() {
     return transactionRepository.findAll();
   }
@@ -28,7 +30,7 @@ public class TransactionService {
         .orElseThrow(() -> new EntityNotFoundException("Transaction ID (" + id + ") not found"));
   }
 
-  public Transaction saveTransaction(Transaction transaction) {
+  public Transaction createTransaction(Transaction transaction) {
     return transactionRepository.save(transaction);
   }
 
@@ -52,5 +54,25 @@ public class TransactionService {
       User user, TransactionCategory category, Instant startDate, Instant endDate) {
     return transactionRepository.findByUserAndCategoryAndTransactionDateTimeBetween(
         user, category, startDate, endDate);
+  }
+
+  // PUT (UPDATE)
+  public Transaction updateTransactionByID(Long id, TransactionDto dto) {
+    if (dto.getId() == null) {
+      throw new IllegalArgumentException("Transaction ID is required");
+    }
+
+    Transaction existingTransaction = transactionRepository
+        .findById(id)
+        .orElseThrow(() -> new EntityNotFoundException("Transaction ID (" + id + ") not found"));
+
+    // Update fields from DTO (ignoring relationships if needed)
+    transactionDtoMapper.updateEntity(dto, existingTransaction);
+
+    return transactionRepository.save(existingTransaction);
+  }
+
+  public List<Transaction> getTransactionsByCategoryName(String categoryName) {
+    return transactionRepository.findByCategory_CategoryName(categoryName);
   }
 }

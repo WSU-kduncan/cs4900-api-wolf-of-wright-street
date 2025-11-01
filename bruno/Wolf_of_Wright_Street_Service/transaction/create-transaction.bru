@@ -1,0 +1,30 @@
+meta {
+  name: create-transaction
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8080/Wolf_of_Wright_Street_Service/transactions
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "userEmail": "user@wolf.com",
+    "categoryName": "Food",
+    "transactionDateTime": "2025-11-01T12:34:56Z",
+    "description": "Dinner at dinos",
+    "amount": "19.99"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

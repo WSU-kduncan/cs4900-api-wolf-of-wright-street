@@ -1,0 +1,31 @@
+meta {
+  name: update-transaction-by-email
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://localhost:8080/Wolf_of_Wright_Street_Service/transactions/2
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+      "id": 2,
+      "userEmail": "user@wolf.com",
+      "categoryName": "Food",
+      "transactionDateTime": "2025-11-01T12:34:56Z",
+      "description": "test",
+      "amount": 29.99
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
