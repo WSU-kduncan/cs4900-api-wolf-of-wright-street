@@ -27,7 +27,7 @@
   DONE
 - Get transactions by email and category and date range
 
-  IN PROCESS
+  DONE
 
 ### Transaction Category Entity
 
