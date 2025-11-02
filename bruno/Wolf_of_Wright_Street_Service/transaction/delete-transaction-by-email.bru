@@ -1,12 +1,12 @@
 meta {
-  name: delete-user-by-email
+  name: delete-transaction-by-email
   type: http
-  seq: 5
+  seq: 3
 }
 
 delete {
-  url: http://localhost:8080/Wolf_of_Wright_Street_Service/users/test2@example.com
-  body: json
+  url: http://localhost:8080/Wolf_of_Wright_Street_Service/transactions/2
+  body: none
   auth: inherit
 }
 
