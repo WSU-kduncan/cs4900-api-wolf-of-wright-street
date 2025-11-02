@@ -5,21 +5,28 @@
 ### User Entity
 
 - Get all users
+
   DONE
 - Get user by email
+
   DONE
 - get user by last name
+
   DONE
 
 ### Transaction Entity
 
 - Get all transactions
+
   DONE
 - Get transaction by email
+
   DONE
 - Get transaction by email and category
+
   DONE
 - Get transactions by email and category and date range
+
   IN PROCESS
 
 ### Transaction Category Entity
@@ -47,21 +54,25 @@
 ### User Entity
 
 - Add user
+
   DONE
   
 ### Transaction Entity
 
 - Add transaction
+
   DONE
   
 ### Transaction Category Entity
 
 - Add transaction category (maybe not needed, not a user item)
+
   DONE
   
 ### Cashflow Type Entity
 
 - Add cashflow type (maybe not needed, not a user item)
+
   DONE
 
 ### Budget Entity
