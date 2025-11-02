@@ -9,6 +9,7 @@ import com.wolf.budgetapp.repository.TransactionCategoryRepository;
 import com.wolf.budgetapp.repository.UserRepository;
 import com.wolf.budgetapp.service.TransactionService;
 import jakarta.persistence.EntityNotFoundException;
+import java.time.Instant;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -114,6 +116,42 @@ public class TransactionController {
     // Fetch transactions
     List<TransactionDto> transactions =
         transactionService.getTransactionsByUserAndCategory(user, category).stream()
+            .map(transactionDtoMapper::toDto)
+            .collect(Collectors.toList());
+
+    return ResponseEntity.ok(transactions);
+  }
+
+  // get by user + category + date range
+  @GetMapping("/user/{email}/category/{categoryName}/dates")
+  public ResponseEntity<List<TransactionDto>> getTransactionsByUserCategoryAndDateRange(
+      @PathVariable String email,
+      @PathVariable String categoryName,
+      @RequestParam("startDate") Instant startDate,
+      @RequestParam("endDate") Instant endDate) {
+
+    // Validate input - no nulls
+    if (startDate == null || endDate == null) {
+      return ResponseEntity.badRequest().body(List.of());
+    }
+
+    // Validate input - start must be before endDate
+    if (startDate.isAfter(endDate)) {
+      return ResponseEntity.badRequest().body(List.of());
+    }
+
+    User user = userRepository
+        .findByEmailAddress(email)
+        .orElseThrow(() -> new EntityNotFoundException("User not found with email: " + email));
+
+    TransactionCategory category = categoryRepository
+        .findById(categoryName)
+        .orElseThrow(() -> new EntityNotFoundException("Category not found: " + categoryName));
+
+    List<TransactionDto> transactions =
+        transactionService
+            .getTransactionsByUserCategoryAndDateRange(user, category, startDate, endDate)
+            .stream()
             .map(transactionDtoMapper::toDto)
             .collect(Collectors.toList());
 
