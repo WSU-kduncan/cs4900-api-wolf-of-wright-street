@@ -85,26 +85,31 @@
 ### User Entity
 
 - Update user
+
   DONE
 
 ### Transaction Entity
 
 - Update Transaction
+
   DONE
 
 ### Transaction Category Entity
 
 - Update Transaction Category
+
   DONE
 
 ### Cashflow Type Entity
 
 - Update Cashflow Type
+
   DONE
 
 ### Budget Entity
 
 - Update Budget
+
   IN PROCESS
   
 ## DELETE Routes
@@ -112,26 +117,31 @@
 ### User Entity
 
 - Delete User
+
   DONE
 
 ### Transaction Entity
 
 - Delete Transaction entry
+
   DONE
 
 ### Transaction Category Entity
 
 - Delete Transaction Category ((maybe not needed, not a user item)
+
   IN PROCESS
 
 ### Cashflow Type Entity
 
 - Delete cashflow type (maybe not needed, not a user item)
+
   IN PROCESS
 
 ### Budget Entity
 
-- Delete Budget Entity
+- Delete Budget Entry
+
   IN PROCESS
 
-- Delete budget entry
+
