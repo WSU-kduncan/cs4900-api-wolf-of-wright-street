@@ -10,4 +10,4 @@ This is the UI repository for the Transaction Tracker project. Our main reposito
 
 - Our API Route definitions can be found here
   
-  [API Routes]()
+  [API Routes](bruno/api-routes-plan.md)
