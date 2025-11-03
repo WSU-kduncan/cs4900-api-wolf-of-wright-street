@@ -51,12 +51,19 @@ public class BudgetService {
     public Budget addBudget(BudgetDto budgetDto) throws EntityNotFoundException {
         return budgetRepository.saveAndFlush(budgetDtoMapper.toEntity(budgetDto));
     }
-    /*
+
     public Budget updateBudget(String email, String name, LocalDate period, BudgetDto budgetDto) 
     throws EntityNotFoundException, IllegalArgumentException {
-        if (budgetDto.)
+        // Might need a different check here?
+        if (budgetDto.getId() == null) {
+            throw new IllegalArgumentException("Missing required arguments!");
+        }
+        Budget existingBudget = budgetRepository.findExactBudget(email, name, period)
+        .orElseThrow(() -> new EntityNotFoundException("Budget with email, name, period: " + email + ", " + name + ", " + period + " not found"));
+        budgetDtoMapper.updateEntity(budgetDto, existingBudget);
+
+        return budgetRepository.save(existingBudget);
     }
-    */
 
     public void deleteBudget(String email, String name, LocalDate period) throws EntityNotFoundException {
         Budget budget = budgetRepository

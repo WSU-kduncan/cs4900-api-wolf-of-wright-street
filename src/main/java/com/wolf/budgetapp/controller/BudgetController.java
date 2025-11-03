@@ -71,7 +71,7 @@ public class BudgetController {
     // Edit Specific Budget (PUT)
     @PutMapping(path = "/{email}/{name}/{period}")
       ResponseEntity<Object> updateBudget(
-      @PathVariable("email") String email, @PathVariable("name") String name, @PathVariable("period") DateTime period, 
+      @PathVariable("email") String email, @PathVariable("name") String name, @PathVariable("period") LocalDate period, 
       @RequestBody BudgetDto budgetDto) {
     try {
       // Update Budget via Service, return OK status if successful

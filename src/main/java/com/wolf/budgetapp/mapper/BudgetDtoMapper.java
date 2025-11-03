@@ -2,6 +2,8 @@ package com.wolf.budgetapp.mapper;
 
 import java.util.List;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import com.wolf.budgetapp.dto.BudgetDto;
 import com.wolf.budgetapp.model.Budget;
 import com.wolf.budgetapp.service.TransactionService;
@@ -17,4 +19,9 @@ public interface BudgetDtoMapper {
     BudgetDto toDto (Budget budget) throws EntityNotFoundException;
 
     List<BudgetDto> toDtoList(List<Budget> budgetList) throws EntityNotFoundException;
+
+    @Mapping(target = "user", source = "userEmail")
+    @Mapping(target = "amount", source = "amount")
+    @Mapping(target = "category", ignore = true)
+    void updateEntity(BudgetDto to, @MappingTarget Budget entity);
 }
