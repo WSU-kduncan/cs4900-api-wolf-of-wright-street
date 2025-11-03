@@ -39,18 +39,29 @@
 ### Cashflow Type Entity
 
 - Get all cashflow types
+
+DONE
 - Get cashflow description by cashflow name
+
+DONE
 - Get cashflow factor by cashflow name
+
+DONE
 
 ### Budget Entity
 
 - Get all budgets
+
 DONE
 - Get budget sum and count of transactions by email and category and budget period
+
+DONE
 - Get budget sum and count of transactions by email and category and budget period range
 - Get budget sum and count of transactions by email
+
 DONE
 - Get budget sum and count of transactions by email and category 
+
 DONE
 
 ## POST Routes
@@ -82,7 +93,8 @@ DONE
 ### Budget Entity
 
 - Add budget for budget period by user and category
-  IN PROCESS
+
+  DONE
 
 ## PUT Routes
 
@@ -114,7 +126,7 @@ DONE
 
 - Update Budget
 
-  IN PROCESS
+  DONE
   
 ## DELETE Routes
 
@@ -132,7 +144,7 @@ DONE
 
 ### Transaction Category Entity
 
-- Delete Transaction Category ((maybe not needed, not a user item)
+- Delete Transaction Category (maybe not needed, not a user item)
 
   IN PROCESS
 
@@ -140,13 +152,13 @@ DONE
 
 - Delete cashflow type (maybe not needed, not a user item)
 
-  IN PROCESS
+  NOT NEEDED (probably)
 
 ### Budget Entity
 
 - Delete Budget Entry
 
-  IN PROCESS
+  DONE
 
 
 
