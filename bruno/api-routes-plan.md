@@ -44,10 +44,14 @@
 
 ### Budget Entity
 
+- Get all budgets
+DONE
 - Get budget sum and count of transactions by email and category and budget period
 - Get budget sum and count of transactions by email and category and budget period range
 - Get budget sum and count of transactions by email
+DONE
 - Get budget sum and count of transactions by email and category 
+DONE
 
 ## POST Routes
 
