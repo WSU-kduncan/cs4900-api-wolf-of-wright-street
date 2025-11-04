@@ -32,9 +32,17 @@
 ### Transaction Category Entity
 
 - Get description by category name
+
+  DONE
 - Get cashflowtype and cashflow factor by category name
+
+  IN PROGRESS
 - Get all categories by cashflow type name
+
+  IN PROGRESS
 - Get all categories
+
+  DONE
 
 ### Cashflow Type Entity
 
