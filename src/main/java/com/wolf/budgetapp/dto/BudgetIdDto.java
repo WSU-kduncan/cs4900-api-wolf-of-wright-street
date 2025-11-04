@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BudgetIdDto {
-    
-    private String userEmail;
-    private String categoryName;
-    private LocalDate budgetPeriod;
+
+  private String userEmail;
+  private String categoryName;
+  private LocalDate budgetPeriod;
 }
