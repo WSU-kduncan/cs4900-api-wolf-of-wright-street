@@ -13,3 +13,11 @@
 - Our API Route definitions can be found here
   
   [API Routes](bruno/api-routes-plan.md)
+
+## API Instructions
+
+### Recommended Tools
+- For Windows users, it's reccomended to have a version of ubuntu installed via WSL2.
+
+### Required Tools
+- 
