@@ -20,4 +20,15 @@
 - For Windows users, it's reccomended to have a version of ubuntu installed via WSL2.
 
 ### Required Tools
-- 
+- Ensure that you have java 17 installed in the environment that you will run the program from. 
+- Docker desktop is also required to be installed on your local machine. 
+- Ensure you have Bruno installed on your local machine to test API routes.
+- Ensure that VSCode is installed in the environment you will run the program from. 
+- In VSCode, search for and install the following extensions:
+  - 
+
+### How to run API
+1. 
+
+### How to test API
+1. 
