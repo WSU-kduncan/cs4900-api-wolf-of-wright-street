@@ -6,13 +6,14 @@ import jakarta.persistence.Embeddable;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Embeddable
-// @NoArgsConstructor
-@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class BudgetID implements Serializable {
 
   @Column(name = "email_address", nullable = false)

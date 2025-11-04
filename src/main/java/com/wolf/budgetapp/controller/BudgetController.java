@@ -3,10 +3,15 @@ package com.wolf.budgetapp.controller;
 import com.wolf.budgetapp.dto.BudgetDto;
 import com.wolf.budgetapp.mapper.BudgetDtoMapper;
 import com.wolf.budgetapp.model.Budget;
+import com.wolf.budgetapp.model.TransactionCategory;
+import com.wolf.budgetapp.model.User;
+import com.wolf.budgetapp.repository.TransactionCategoryRepository;
+import com.wolf.budgetapp.repository.UserRepository;
 import com.wolf.budgetapp.service.BudgetService;
 import jakarta.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -22,11 +27,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(path = "/budget", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/budgets", produces = MediaType.APPLICATION_JSON_VALUE)
 public class BudgetController {
 
   private final BudgetService budgetService;
   private final BudgetDtoMapper budgetDtoMapper;
+  private final UserRepository userRepository;
+  private final TransactionCategoryRepository transactionCategoryRepository;
 
   // ALL Budgets (GET)
   @GetMapping
@@ -37,17 +44,41 @@ public class BudgetController {
 
   // Search by User Email (GET)
   @GetMapping(path = "/{email}")
-  ResponseEntity<BudgetDto> getBudgetByEmail(@PathVariable("email") String email) {
-    return new ResponseEntity<>(
-        budgetDtoMapper.toDto(budgetService.getBudgetByEmail(email)), HttpStatus.OK);
+  ResponseEntity<List<BudgetDto>> getBudgetsByEmail(@PathVariable("email") String email) {
+    // Resolve user
+    User user = userRepository
+        .findByEmailAddress(email)
+        .orElseThrow(() -> new EntityNotFoundException("User not found with email: " + email));
+
+    // Fetch budgets by user
+    List<BudgetDto> budgets = budgetService.getBudgetsByUser(user).stream()
+        .map(budgetDtoMapper::toDto)
+        .collect(Collectors.toList());
+
+    return ResponseEntity.ok(budgets);
   }
 
   // Search by Email, then by Category Name (GET)
   @GetMapping(path = "/{email}/{name}")
-  ResponseEntity<BudgetDto> getBudgetByEmailAndName(
+  ResponseEntity<List<BudgetDto>> getBudgetByEmailAndName(
       @PathVariable("email") String email, @PathVariable("name") String name) {
-    return new ResponseEntity<>(
-        budgetDtoMapper.toDto(budgetService.getBudgetByEmailAndName(email, name)), HttpStatus.OK);
+    // Resolve user
+    User user = userRepository
+        .findByEmailAddress(email)
+        .orElseThrow(() -> new EntityNotFoundException("User not found with email: " + email));
+
+    // Resolve transaction category
+    TransactionCategory category = transactionCategoryRepository
+        .findById(name)
+        .orElseThrow(
+            () -> new EntityNotFoundException("Transaction Category not found with name: " + name));
+
+    // Fetch budgets by user and transaction bategory
+    List<BudgetDto> budgets = budgetService.getBudgetsByUserAndCategory(user, category).stream()
+        .map(budgetDtoMapper::toDto)
+        .collect(Collectors.toList());
+
+    return ResponseEntity.ok(budgets);
   }
 
   // Search by Email, then by Category Name, then by Budget Period (GET, exact budget)
@@ -56,8 +87,21 @@ public class BudgetController {
       @PathVariable("email") String email,
       @PathVariable("name") String name,
       @PathVariable("period") LocalDate period) {
-    return new ResponseEntity<>(
-        budgetDtoMapper.toDto(budgetService.getExactBudget(email, name, period)), HttpStatus.OK);
+    // Resolve user
+    User user = userRepository
+        .findByEmailAddress(email)
+        .orElseThrow(() -> new EntityNotFoundException("User not found with email: " + email));
+
+    // Resolve transaction category
+    TransactionCategory category = transactionCategoryRepository
+        .findById(name)
+        .orElseThrow(
+            () -> new EntityNotFoundException("Transaction Category not found with name: " + name));
+
+    // Fetch budgets by user and transaction bategory
+    BudgetDto budget = budgetDtoMapper.toDto(budgetService.getExactBudget(user, category, period));
+
+    return ResponseEntity.ok(budget);
   }
 
   // Add new Budget (POST)
@@ -80,8 +124,18 @@ public class BudgetController {
       @PathVariable("period") LocalDate period,
       @RequestBody BudgetDto budgetDto) {
     try {
+      // Resolve user
+      User user = userRepository
+          .findByEmailAddress(email)
+          .orElseThrow(() -> new EntityNotFoundException("User not found with email: " + email));
+
+      // Resolve transaction category
+      TransactionCategory category = transactionCategoryRepository
+          .findById(name)
+          .orElseThrow(() ->
+              new EntityNotFoundException("Transaction Category not found with name: " + name));
       // Update Budget via Service, return OK status if successful
-      Budget updatedBudget = budgetService.updateBudget(email, name, period, budgetDto);
+      Budget updatedBudget = budgetService.updateBudget(user, category, period, budgetDto);
       return new ResponseEntity<>(budgetDtoMapper.toDto(updatedBudget), HttpStatus.OK);
     } catch (EntityNotFoundException e) {
       return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.NOT_FOUND);
@@ -97,7 +151,17 @@ public class BudgetController {
       @PathVariable("name") String name,
       @PathVariable("period") LocalDate period) {
     try {
-      budgetService.deleteBudget(email, name, period);
+      // Resolve user
+      User user = userRepository
+          .findByEmailAddress(email)
+          .orElseThrow(() -> new EntityNotFoundException("User not found with email: " + email));
+
+      // Resolve transaction category
+      TransactionCategory category = transactionCategoryRepository
+          .findById(name)
+          .orElseThrow(() ->
+              new EntityNotFoundException("Transaction Category not found with name: " + name));
+      budgetService.deleteBudget(user, category, period);
       return new ResponseEntity<>("Budget deleted successfully.", HttpStatus.OK);
     } catch (EntityNotFoundException e) {
       return new ResponseEntity<>("Budget not found.", HttpStatus.NOT_FOUND);

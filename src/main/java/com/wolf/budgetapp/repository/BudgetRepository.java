@@ -1,16 +1,20 @@
 package com.wolf.budgetapp.repository;
 
 import com.wolf.budgetapp.model.Budget;
+import com.wolf.budgetapp.model.TransactionCategory;
+import com.wolf.budgetapp.model.User;
 import java.time.LocalDate;
-import java.util.Optional;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BudgetRepository extends JpaRepository<Budget, String> {
-  Optional<Budget> findByEmail(String email);
+  // Find by User
+  List<Budget> findByUser(User user);
 
-  Optional<Budget> findByEmailAndName(String email, String name);
+  List<Budget> findByUserAndCategory(User user, TransactionCategory category);
 
-  Optional<Budget> findExactBudget(String email, String name, LocalDate period);
+  Budget findByUserAndCategoryAndBudgetIdDate(
+      User user, TransactionCategory category, LocalDate period);
 }
