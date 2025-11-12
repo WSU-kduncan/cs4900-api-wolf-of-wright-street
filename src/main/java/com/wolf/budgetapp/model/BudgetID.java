@@ -17,13 +17,13 @@ import lombok.NoArgsConstructor;
 public class BudgetID implements Serializable {
 
   @Column(name = "email_address", nullable = false)
-  private String emailAddress;
+  String emailAddress;
 
   @Column(name = "category_name", nullable = false)
-  private String categoryName;
+  String categoryName;
 
   @Column(name = "budget_period", nullable = false)
-  private LocalDate budgetPeriod;
+  LocalDate budgetPeriod;
 
   @Override
   public boolean equals(Object o) {

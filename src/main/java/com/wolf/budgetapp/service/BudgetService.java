@@ -36,7 +36,7 @@ public class BudgetService {
 
   public Budget getExactBudget(User user, TransactionCategory category, LocalDate period)
       throws EntityNotFoundException {
-    return budgetRepository.findByUserAndCategoryAndBudgetIdDate(user, category, period);
+    return budgetRepository.findByUserAndCategoryAndIdBudgetPeriod(user, category, period);
   }
 
   public Budget addBudget(BudgetDto budgetDto) throws EntityNotFoundException {
@@ -47,14 +47,14 @@ public class BudgetService {
       User user, TransactionCategory category, LocalDate period, BudgetDto budgetDto)
       throws EntityNotFoundException, IllegalArgumentException {
     Budget existingBudget =
-        budgetRepository.findByUserAndCategoryAndBudgetIdDate(user, category, period);
+        budgetRepository.findByUserAndCategoryAndIdBudgetPeriod(user, category, period);
     budgetDtoMapper.updateEntity(budgetDto, existingBudget);
     return budgetRepository.save(existingBudget);
   }
 
   public void deleteBudget(User user, TransactionCategory category, LocalDate period)
       throws EntityNotFoundException {
-    Budget budget = budgetRepository.findByUserAndCategoryAndBudgetIdDate(user, category, period);
+    Budget budget = budgetRepository.findByUserAndCategoryAndIdBudgetPeriod(user, category, period);
     budgetRepository.delete(budget);
   }
 }
