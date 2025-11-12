@@ -20,8 +20,8 @@ public interface BudgetDtoMapper {
   @Mapping(target = "id", source = "id")
   Budget toEntity(BudgetDto budgetDto) throws EntityNotFoundException;
 
-  //@Mapping(target = "id.userEmail", source = "user.emailAddress")
-  //@Mapping(target = "id.categoryName", source = "category.categoryName")
+  // @Mapping(target = "id.userEmail", source = "user.emailAddress")
+  // @Mapping(target = "id.categoryName", source = "category.categoryName")
   BudgetDto toDto(Budget budget) throws EntityNotFoundException;
 
   List<BudgetDto> toDtoList(List<Budget> budgetList) throws EntityNotFoundException;
