@@ -15,19 +15,20 @@ import org.mapstruct.MappingTarget;
     componentModel = "spring",
     uses = {UserService.class, TransactionService.class, BudgetIdDtoMapper.class})
 public interface BudgetDtoMapper {
-  @Mapping(target = "user", source = "userEmail")
-  @Mapping(target = "category", source = "categoryName")
+  @Mapping(target = "user", source = "id.userEmail")
+  @Mapping(target = "category", source = "id.categoryName")
   @Mapping(target = "id", source = "id")
   Budget toEntity(BudgetDto budgetDto) throws EntityNotFoundException;
 
-  @Mapping(target = "userEmail", source = "user.emailAddress")
-  @Mapping(target = "categoryName", source = "category.categoryName")
+  //@Mapping(target = "id.userEmail", source = "user.emailAddress")
+  //@Mapping(target = "id.categoryName", source = "category.categoryName")
   BudgetDto toDto(Budget budget) throws EntityNotFoundException;
 
   List<BudgetDto> toDtoList(List<Budget> budgetList) throws EntityNotFoundException;
 
-  @Mapping(target = "user", source = "userEmail")
-  @Mapping(target = "category", source = "categoryName")
+  @Mapping(target = "user", source = "id.userEmail", ignore = true)
+  @Mapping(target = "category", source = "id.categoryName", ignore = true)
+  @Mapping(target = "id", source = "id", ignore = true)
   void updateEntity(BudgetDto to, @MappingTarget Budget entity);
 
   default TransactionCategory map(String categoryName) {

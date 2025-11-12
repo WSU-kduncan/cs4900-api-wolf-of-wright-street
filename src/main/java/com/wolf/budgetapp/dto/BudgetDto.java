@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class BudgetDto {
 
   private BudgetIdDto id;
-  private String userEmail;
-  private String categoryName;
+  //private String userEmail;
+  //private String categoryName;
   private BigDecimal amount;
 }

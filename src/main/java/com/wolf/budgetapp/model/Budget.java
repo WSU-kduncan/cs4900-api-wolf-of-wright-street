@@ -9,6 +9,9 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,11 +28,13 @@ public class Budget {
   @EmbeddedId
   BudgetID id;
 
+  @JsonIgnore
   @ManyToOne
   @MapsId("emailAddress")
   @JoinColumn(name = "email_address", nullable = false)
   User user;
 
+  @JsonIgnore
   @ManyToOne
   @MapsId("categoryName")
   @JoinColumn(name = "category_name", nullable = false)

@@ -1,0 +1,15 @@
+meta {
+  name: get-all-budgets
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost:8080/Wolf_of_Wright_Street_Service/budgets
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

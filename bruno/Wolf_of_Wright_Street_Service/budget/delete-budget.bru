@@ -1,0 +1,15 @@
+meta {
+  name: delete-budget
+  type: http
+  seq: 7
+}
+
+delete {
+  url: http://localhost:8080/Wolf_of_Wright_Street_Service/budgets/user@wolf.com/Bills/2025-09-01
+  body: json
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

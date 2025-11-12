@@ -2,7 +2,7 @@ package com.wolf.budgetapp.service;
 
 import com.wolf.budgetapp.dto.BudgetDto;
 import com.wolf.budgetapp.mapper.BudgetDtoMapper;
-import com.wolf.budgetapp.mapper.BudgetIdDtoMapper;
+//import com.wolf.budgetapp.mapper.BudgetIdDtoMapper;
 import com.wolf.budgetapp.model.Budget;
 import com.wolf.budgetapp.model.TransactionCategory;
 import com.wolf.budgetapp.model.User;
@@ -19,7 +19,7 @@ public class BudgetService {
 
   private final BudgetRepository budgetRepository;
   private final BudgetDtoMapper budgetDtoMapper;
-  private final BudgetIdDtoMapper budgetIdDtoMapper;
+  //private final BudgetIdDtoMapper budgetIdDtoMapper;
 
   public List<Budget> getBudgets() {
     return budgetRepository.findAll();

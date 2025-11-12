@@ -73,7 +73,7 @@ public class BudgetController {
         .orElseThrow(
             () -> new EntityNotFoundException("Transaction Category not found with name: " + name));
 
-    // Fetch budgets by user and transaction bategory
+    // Fetch budgets by user and transaction category
     List<BudgetDto> budgets = budgetService.getBudgetsByUserAndCategory(user, category).stream()
         .map(budgetDtoMapper::toDto)
         .collect(Collectors.toList());
