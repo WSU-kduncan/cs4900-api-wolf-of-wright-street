@@ -1,0 +1,15 @@
+meta {
+  name: get-budget-by-user
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://localhost:8080/Wolf_of_Wright_Street_Service/budgets/user@wolf.com
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

@@ -1,0 +1,26 @@
+meta {
+  name: update-budget
+  type: http
+  seq: 6
+}
+
+put {
+  url: http://localhost:8080/Wolf_of_Wright_Street_Service/budgets/user@wolf.com/Bills/2025-09-01
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "id": {
+      "userEmail": "user@wolf.com",
+      "categoryName": "Bills",
+      "budgetPeriod": "2025-09-01"
+    },
+    "amount": 7000
+  }
+}
+
+settings {
+  encodeUrl: true
+}

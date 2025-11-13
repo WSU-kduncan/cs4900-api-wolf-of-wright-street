@@ -1,0 +1,15 @@
+meta {
+  name: get-specific-budget
+  type: http
+  seq: 4
+}
+
+get {
+  url: http://localhost:8080/Wolf_of_Wright_Street_Service/budgets/user@wolf.com/food/2025-09-01
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}
