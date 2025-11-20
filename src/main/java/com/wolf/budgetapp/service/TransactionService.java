@@ -5,7 +5,9 @@ import com.wolf.budgetapp.mapper.TransactionDtoMapper;
 import com.wolf.budgetapp.model.Transaction;
 import com.wolf.budgetapp.model.TransactionCategory;
 import com.wolf.budgetapp.model.User;
+import com.wolf.budgetapp.repository.TransactionCategoryRepository;
 import com.wolf.budgetapp.repository.TransactionRepository;
+import com.wolf.budgetapp.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import java.time.Instant;
 import java.util.List;
@@ -19,6 +21,10 @@ public class TransactionService {
   private final TransactionRepository transactionRepository;
 
   private final TransactionDtoMapper transactionDtoMapper;
+
+  private final UserRepository userRepository;
+
+  private final TransactionCategoryRepository transactionCategoryRepository;
 
   public List<Transaction> getAllTransactions() {
     return transactionRepository.findAll();
@@ -68,6 +74,20 @@ public class TransactionService {
 
     // Update fields from DTO (ignoring relationships if needed)
     transactionDtoMapper.updateEntity(dto, existingTransaction);
+
+    // since i send only keys, i need to have spring make object for passing on this side
+    User user = userRepository
+        .findById(dto.getUserEmail())
+        .orElseThrow(() -> new EntityNotFoundException("User not found: " + dto.getUserEmail()));
+
+    existingTransaction.setUser(user);
+
+    TransactionCategory category = transactionCategoryRepository
+        .findById(dto.getCategoryName()) // PK is categoryName
+        .orElseThrow(
+            () -> new EntityNotFoundException("Category not found: " + dto.getCategoryName()));
+
+    existingTransaction.setCategory(category);
 
     return transactionRepository.save(existingTransaction);
   }
