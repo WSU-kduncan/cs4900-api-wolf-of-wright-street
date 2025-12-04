@@ -14,6 +14,10 @@
   
   [API Routes](bruno/api-routes-plan.md)
 
+## Bruno Collections
+
+[Entities Collections Inside this Directory](bruno/Wolf_of_Wright_Street_Service)
+
 ## API Instructions
 
 ### Recommended Tools
